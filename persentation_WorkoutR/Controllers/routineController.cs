@@ -14,7 +14,6 @@ namespace persentation_WorkoutR.Controllers
 {
     public class routineController : Controller
     {
-        //
         // making new instances of the presentation mapper 
         static presentationMapper _mapper = new presentationMapper();
         // making new instance of the business logic mapper
