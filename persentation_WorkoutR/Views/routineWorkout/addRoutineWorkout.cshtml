@@ -1,0 +1,103 @@
+﻿@model persentation_WorkoutR.Models.routineWorkoutModel
+@using persentation_WorkoutR.Models
+@{
+    ViewBag.Title = "addRoutineWorkout";
+
+    List<exerciseModel> exerciseList = (List<exerciseModel>)Session["viewExercise"];
+    List<bodyPartModel> bodyPartList = (List<bodyPartModel>)Session["viewBodyPart"];
+}
+
+<style>
+    input,
+    button,
+    select,
+    optgroup,
+    textarea {
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+        border: 1px solid #bbb;
+        border-radius: .25rem;
+        text-align: center;
+        float: right;
+    }
+
+    button,
+    input {
+        float: right;
+        overflow: visible;
+        text-align: center;
+    }
+
+    button,
+    select {
+        text-transform: none;
+        float: right;
+        width: 170px;
+    }
+</style>
+
+<br />
+<i class="fa fa fa-arrow-circle-left" style="font-size:16px; padding:5px"></i>@Html.ActionLink("Back to Routines", "viewRoutine", "routine")
+<h2>Add Routine Exercises</h2><br />
+<div class="w3ls-exercise box box--big">
+    @using (Html.BeginForm("addRoutineWorkout", "routineWorkout", FormMethod.Post))
+    {
+    
+        <div class="container">
+            <div class="form-group">
+                @Html.LabelFor(m => m.bodyPartID, "Body Part")
+                @Html.DropDownListFor(m => m.bodyPartID, new SelectList(bodyPartList, "bodyPartID", "bodyPartName"), "Select body part", new { @id = "bodyPart", @onchange = "bodyClick()" })
+                @Html.ValidationMessageFor(m => m.bodyPartID, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FK_exerciseID)
+                @Html.DropDownListFor(m => m.FK_exerciseID, new SelectList(exerciseList, "exerciseID", "exerciseName"), "", new { @id = "exercise" })
+                @Html.ValidationMessageFor(m => m.FK_exerciseID, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.HiddenFor(m => m.FK_routineWorkoutID)
+                @Html.HiddenFor(m => m.FK_routineWorkoutID, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FK_routineWorkoutID, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.routineWSets)
+                @Html.DropDownListFor(m => m.routineWSets, new SelectList(Enumerable.Range(1, 15)))
+                @Html.ValidationMessageFor(m => m.routineWSets, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.routineWReps)
+                @Html.DropDownListFor(m => m.routineWReps, new SelectList(Enumerable.Range(1, 30)))
+                @Html.ValidationMessageFor(m => m.routineWReps, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.routineWRest)
+                @Html.EditorFor(m => m.routineWRest, new { @class = "form-control", @placeholder = "Rest" })
+                @Html.ValidationMessageFor(m => m.routineWRest, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+        <input type="submit" class="btn-danger" value="Add Routine" />
+
+    }
+</div>
+
+<script>
+    var bodyPart = document.getElementById("bodyPart");
+    var exerciseF = document.getElementById("exercise");
+
+    function bodyClick() {
+
+        var exerciseList = @Html.Raw(Json.Encode(exerciseList));
+        exerciseF.options.length = 0;
+        var bodyPartID = bodyPart.options[bodyPart.selectedIndex].value;
+
+        for (var i = 0; i < exerciseList.length; i++) {
+            if (exerciseList[i].FK_bodyPart == bodyPartID) {
+                exerciseF.options[exerciseF.options.length] =
+                    new Option(exerciseList[i].exerciseName, exerciseList[i].exerciseID);
+            }
+        }
+    }
+</script>

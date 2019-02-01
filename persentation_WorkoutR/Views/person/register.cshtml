@@ -1,0 +1,72 @@
+﻿@model persentation_WorkoutR.Models.personModel
+@{
+    /**/
+
+    ViewBag.Title = "register";
+}
+
+<div class="w3ls-register box box--big">
+    @using (Html.BeginForm("register", "person", FormMethod.Post))
+    {
+
+        @Html.ValidationSummary()
+        <div class="container">
+            <h2>REGISTER</h2><br />
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.personFirstName)
+                @Html.TextBoxFor(m => m.personFirstName, new { @class = "form-control", @placeholder = "Enter your First Name", @required = true })
+                @Html.ValidationMessageFor(m => m.personFirstName)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.personLastName)
+                @Html.TextBoxFor(m => m.personLastName, new { @class = "form-control", @placeholder = "Enter your Last Name", @required = true })
+                @Html.ValidationMessageFor(m => m.personLastName)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.personAddress)
+                @Html.TextBoxFor(m => m.personAddress, new { @class = "form-control", @placeholder = "Address", @required = true })
+                @Html.ValidationMessageFor(m => m.personAddress)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.personCity)
+                @Html.TextBoxFor(m => m.personCity, new { @class = "form-control", @placeholder = "City", @required = true })
+                @Html.ValidationMessageFor(m => m.personCity)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.personState)
+                @Html.TextBoxFor(m => m.personState, new { @class = "form-control", @placeholder = "State", @required = true })
+                @Html.ValidationMessageFor(m => m.personState)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.personZip)
+                @Html.TextBoxFor(m => m.personZip, new { @class = "form-control", @placeholder = "Zip code", @required = true })
+                @Html.ValidationMessageFor(m => m.personZip)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.personPhone)
+                @Html.TextBoxFor(m => m.personPhone, new { @class = "form-control", @placeholder = "Phone number", @required = true })
+                @Html.ValidationMessageFor(m => m.personPhone)
+            </div>
+            @* <div class="form-group">
+                    @Html.HiddenFor(m => m.FK_roleID)
+                    @Html.HiddenFor(m => m.FK_roleID, new { @class = "form-control" })
+                </div>*@
+            <div class="form-group">
+                @Html.LabelFor(m => m.personUsername)
+                @Html.TextBoxFor(m => m.personUsername, new { @class = "form-control", @placeholder = "User Name" })
+                @Html.ValidationMessageFor(m => m.personUsername)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.personPassword)
+                @Html.PasswordFor(m => m.personPassword, new { @class = "form-control", @placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.personPassword)
+            </div>
+        </div>
+        <input type="submit" class="btn-danger" value="Register" />
+    }
+</div>

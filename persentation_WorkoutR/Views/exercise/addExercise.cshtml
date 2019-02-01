@@ -1,0 +1,45 @@
+﻿@model persentation_WorkoutR.Models.exerciseModel
+
+@{
+    ViewBag.Title = "addExercise";
+}
+
+
+<br />@Html.ActionLink("back to list","viewExercise")
+    <h2>Add Exercise</h2><br />
+<div class="w3ls-exerciseDB box box--big">
+    @using (Html.BeginForm("addExercise", "exercise", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.FK_bodyPart, "Body Part", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.FK_bodyPart, new SelectList(Model.bodyPartList, "bodyPartID", "bodyPartName"))
+                @Html.ValidationMessageFor(m => m.FK_bodyPart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.exerciseName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exerciseName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Exercise Name" } })
+                @Html.ValidationMessageFor(model => model.exerciseName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.exerciseDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.exerciseDescription, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
+                @Html.ValidationMessageFor(model => model.exerciseDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+    </div>

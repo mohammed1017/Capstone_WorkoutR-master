@@ -1,0 +1,56 @@
+﻿@model persentation_WorkoutR.Models.personModel
+
+@{ 
+    /**/
+
+    ViewBag.Title = "login";
+}
+    <div class="w3ls-login box box--big">
+        @using (Html.BeginForm("login", "person", FormMethod.Post))
+        {
+            <div class="container">
+                <div class="agile-field-txt">
+
+                    @Html.LabelFor(m => m.personUsername)
+                    @Html.TextBoxFor(m => m.personUsername, new { @class = "form-control", @placeholder = "Enter your name" })
+                    @Html.ValidationMessageFor(m => m.personUsername)
+                </div>
+                <div class="agile-field-txt">
+                    @Html.LabelFor(m => m.personPassword)
+                    @Html.PasswordFor(m => m.personPassword, new { @class = "form-control", @placeholder = "Password", @id = "myInput" })
+                    @Html.ValidationMessageFor(m => m.personPassword)
+                    <br />
+                    <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+
+                    <label class="check" for="check3">Show password</label>
+                </div>
+                <!-- script for show password -->
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("myInput");
+                        if (x.type === "password") {
+                            x.type = "text";
+                        } else {
+                            x.type = "password";
+                        }
+                    }
+                </script>
+                <!-- //script ends here -->
+
+                <div class="w3ls-bot">
+                    <div class="form-end">
+                        <input onclick="change()" class="btn-danger" type="submit" value="LOGIN" id="myButton1">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <!-- script for logging in... function -->
+                <script type="text/javascript">
+                    function change() {
+                        document.getElementById("myButton1").value = "Logging in...";
+                    }
+                </script>
+                <!-- //script ends here -->
+            </div>
+        }
+    </div>

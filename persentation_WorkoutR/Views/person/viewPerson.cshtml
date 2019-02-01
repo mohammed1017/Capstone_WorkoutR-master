@@ -1,0 +1,109 @@
+﻿@model persentation_WorkoutR.Models.viewModel
+@using persentation_WorkoutR.Models
+@{
+    ViewBag.Title = "viewPerson";
+}
+<br />
+<h2>Members</h2>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #ffffff;
+            text-align: center;
+            padding: 4px;
+            padding-right:30px;
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ccc3c3;
+        }
+    </style>
+</head>
+<div class=" container">
+    <table class="table-condensed" style="width:100% " >
+
+        <colgroup span="2" align="left"></colgroup>
+        <colgroup align="left" style="width:10% "></colgroup>
+      
+        <tr font-size: xx-large>
+            
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>Phone #</th>
+            <th>Username</th>
+            <th>Role</th>
+
+        </tr>
+
+        @foreach (personModel person in Model.personList)
+        {
+        <tr>
+            @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+            {
+
+
+                <td>@Html.DisplayFor(m => person.personFirstName)</td>
+                <td>@Html.DisplayFor(m => person.personLastName)</td>
+                <td>@Html.DisplayFor(m => person.personAddress)</td>
+                <td>@Html.DisplayFor(m => person.personCity)</td>
+                <td>@Html.DisplayFor(m => person.personState)</td>
+                <td>@Html.DisplayFor(m => person.personZip)</td>
+                <td>@Html.DisplayFor(m => person.personPhone)</td>
+                <td>@Html.DisplayFor(m => person.personUsername)</td>
+                if ((int)Session["FK_roleID"] == 2)
+                {
+                    <td>@Html.DropDownListFor(m => person.FK_roleID, new SelectList(Model.roleList, "roleID", "roleName", person.FK_roleID), new {@class = "form-control", disabled = "disabled" })</td>
+                }
+
+                if ((int)Session["FK_roleID"] == 3)
+                {
+                    if ((int)Session["personID"] == person.personID || person.personID == 1)
+                    {
+                    <td>@Html.DropDownListFor(m => person.FK_roleID, new SelectList(Model.roleList, "roleID", "roleName", person.FK_roleID), new {@class = "form-control", disabled = "disabled" })</td>
+                    }
+                    else
+                    {
+                    <td>@Html.DropDownListFor(m => person.FK_roleID, new SelectList(Model.roleList, "roleID", "roleName", person.FK_roleID), new { @class = "form-control", @id = "roleID" + person.personID })</td>
+                    }
+                    <td> <button type="button" class="btn btn-link" onclick="update(@person.personID)">Update <i class="fa fa-edit" style="font-size:14px; padding:5px"></i></button> </td>
+
+                    if ((int)Session["personID"] != person.personID && person.personID != 1)
+                    {
+
+                        <td>@Html.ActionLink("Delete", "deletePerson", routeValues: new { _deletePerson = person.personID }) <i class="fa fa-trash" style="font-size:14px; color:red; padding:5px"></i></td>
+                    }
+                    else
+                    {
+
+                       <td><div class="item" style="text-align:left; padding-left:6px; height:10px; padding-bottom:40px" >
+                            <a href="">
+                                <p class="label success new-label"><span class="align">Delete</span></p>
+                          </a>
+                        </div></td>
+                    }
+                }
+            }
+        </tr>
+        }
+    </table>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function update(id) {
+            var roleId = $("#roleID" + id).val();
+            window.location.href = '/person/updateRoles?roleID=' + roleId + '&personID=' + id;
+        }
+    </script>
+}

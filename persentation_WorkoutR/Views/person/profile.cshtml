@@ -1,0 +1,105 @@
+﻿@model persentation_WorkoutR.Models.personModel
+@using persentation_WorkoutR.Models
+@{
+    ViewBag.Title = "View";
+}
+
+<style>
+    #header {
+        background-color: black;
+        color: white;
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .left {
+        width: 100px;
+        float: left;
+        text-align: left;
+    }
+
+    .right {
+        width: 100px;
+        float: left;
+        text-align: right;
+    }
+
+    hr {
+        margin: 10px 0;
+        border: 1px thin;
+    }
+
+    #nav {
+        line-height: 30px;
+        background-color: #eeeeee;
+        height: 350px;
+        width: 25%;
+        float: left;
+        padding: 5px;
+    }
+
+    #section {
+        width: 350px;
+        float: left;
+        width: 75%;
+        padding-left: 120px;
+        padding-top: 25px;
+    }
+</style>
+<div id="header">
+    <h1>Welcome, @Html.DisplayFor(m => m.personFirstName)</h1>
+</div>
+
+<div id="nav">
+    <div class="left">First Name:</div> <div class="right">@Html.DisplayFor(m => m.personFirstName)</div><br />
+    <hr />
+    <div class="left">Last Name:</div> <div class="right">@Html.DisplayFor(m => m.personLastName)</div><br />
+    <hr />
+    <div class="left">Phone #:</div> <div class="right">@Html.DisplayFor(m => m.personPhone)</div><br />
+    <hr />
+    <div class="left">Address:</div> <div class="right">@Html.DisplayFor(m => m.personAddress)</div><br />
+    <hr />
+    <div class="left">City:</div> <div class="right">@Html.DisplayFor(m => m.personCity)</div><br />
+    <hr />
+    <div class="left">State:</div> <div class="right">@Html.DisplayFor(m => m.personState)</div><br />
+    <hr />
+    <div class="left">Zipcode:</div> <div class="right">@Html.DisplayFor(m => m.personZip)</div><br />
+    <hr />
+
+    @if ((int)Session["FK_roleID"] == 1 || (int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+    {
+        @Html.ActionLink("Edit Profile", "updatePerson", "person", Model, null) <i style="padding:10px"></i>
+        <br />
+        @Html.ActionLink("Update User/Password", "updatePassPerson", "person", Model, null)
+        <br />
+    }
+</div>
+<div id="section">
+    <p>
+        @if ((int)Session["FK_roleID"] == 1 || (int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+        {
+            <a href='@Url.Action("viewRoutine", "routine")'>
+                <img src="~/images/BeFunky-photo.jpg" width="600" , height="250" />
+            </a>
+        }
+    </p><br />
+   <p>
+        @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+        {
+            <a href='@Url.Action("viewPerson", "person")'>
+                <img src="~/images/Legend_Fitness_HappyMembers.jpg" width="600" , height="250" />
+            </a>
+        }
+    </p><br />
+    <p>
+        @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+        {
+            <a href='@Url.Action("viewExercise", "exercise")'>
+                <img src="~/images/dumbbells_gym_weight_disks_118338_1920x1080.jpg" width="600" , height="250" />
+            </a>
+        }
+    </p><br />
+</div>
+<br />
+<br />

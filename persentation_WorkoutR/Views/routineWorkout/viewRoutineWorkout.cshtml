@@ -1,0 +1,46 @@
+﻿@model persentation_WorkoutR.Models.viewModel
+@using persentation_WorkoutR.Models
+@{
+    ViewBag.Title = "viewRoutineWorkout";
+}
+
+<br />
+<h1>Routine Exercises</h1>
+<i class="fa fa fa-arrow-circle-left" style="font-size:16px; padding:5px"></i> @Html.ActionLink("Back to Routine", "viewRoutine", "routine")
+<br /><br /><br />
+
+@using (Html.BeginForm("viewRoutineWorkout", "routineWorkout", FormMethod.Post))
+{
+    <table style="width:100%; font-size: 16px" class="tbl-accordion">
+        <colgroup span="2" align="left"></colgroup>
+        <colgroup align="right"></colgroup>
+
+        <tr>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Rest</th>
+        </tr>
+        @foreach (routineWorkoutModel routineWorkout in Model.routineWorkoutList)
+
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => routineWorkout.exerciseName)</td>
+                <td> @Html.DisplayFor(m => routineWorkout.routineWSets)</td>
+                <td>@Html.DisplayFor(m => routineWorkout.routineWReps)</td>
+                <td>@Html.DisplayFor(m => routineWorkout.routineWRest)</td>
+                <td>@Html.ActionLink("Delete", "deleteRoutineWorkout", routeValues: new { _deleteRoutineWorkout = routineWorkout.routineWorkoutID })<i class="fa fa-trash" style="font-size:14px; padding:5px"></i></td>
+                <td>@Html.ActionLink("Update", "updateRoutineWorkout", routineWorkout)<i class="fa fa-edit" style="font-size:14px; padding:5px"></i></td>
+            </tr>
+        }
+    </table>
+
+    <br /><br />
+    <h3>Add Exercises </h3>
+    <i class="fa fa-plus" style="font-size:16px; padding:5px"></i> @Html.ActionLink("Add exercises", "addRoutineWorkout")
+}
+<script>
+</script>
+
+<style>
+</style>

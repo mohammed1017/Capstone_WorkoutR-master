@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 2018 Capstone Workout Routines</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container">
+        <div class="masthead">
+            @if (Session["personUsername"] == null)
+            {
+                <h3 class="text-muted">@Html.ActionLink("Workout Routines", "Index", "Home")</h3>
+            }
+            else
+            {
+                <h3 class="text-muted"> @Html.ActionLink("Workout Routines", "profile", "person")</h3>
+            }
+            <ul class="nav navbar">
+                <li>@Html.ActionLink("About", "About", "Home")<i class="fa fa-info" style="font-size:14px; padding:5px"></i></li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")<i class="fa fa-address-book" style="font-size:14px; padding:5px"></i></li>
+                @if (Session["personUsername"] == null)
+                {
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })<i class="fa fa-home" style="font-size:14px; padding:5px"></i></li>
+                    <li>@Html.ActionLink("Login", "login", "person")<i class="fa fa-user" style="font-size:14px; padding:5px"></i></li>
+                    <li>@Html.ActionLink("Register", "register", "person") <i class="fa fa-sign-in-alt" style="font-size:14px; padding:5px"></i></li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Log Out", "logout", "person")<i class="fa fa-log fa-sign-out-alt" style="font-size:14px; padding:5px"></i></li>
+                    <li> @Html.ActionLink("Profile", "profile", "person")<i class="fa fa-log fa-user" style="font-size:14px; padding:5px"></i></li>
+
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr /> 
+        
+        <footer>  
+            <p>&copy; @DateTime.Now.Year -Capstone - Workout Routines</p>                   
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

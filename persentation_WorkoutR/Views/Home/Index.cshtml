@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .navbar {
+        border-width: 1px;
+        border-style: solid;
+        visibility: hidden;
+    }
+
+    a {
+        color: #D9230F;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+        font-size: large;
+    }
+    body {
+        background-image: url("../../images/victor-freitas-546968-unsplash.jpg");
+        background-size: cover;
+    }
+    .jumbotron {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+        background-color: #eeeeee;
+        border-radius: 0.3rem;
+        margin-bottom:100px;
+        margin-left:400px;
+        margin-right:400px;
+    }
+    footer {
+        color: #ffffff;
+    }
+    p {
+        margin-bottom: 3rem;
+    }
+</style>
+<body>
+<br />
+<div class="jumbotron table-responsive-sm" style=" text-align: center">
+    <h1 class="col-md-push-2">Workout Routines</h1>
+    <p class="lead col-md-push-9">Create and log your workouts </p>
+
+    <p class="col-md-push-2"><a href="/person/login" class="btn btn-primary btn-lg">Log in &raquo;</a>  <a href="/person/register" class="btn btn-primary btn-lg"> Sign Up </a></p>
+</div>
+</body>
+

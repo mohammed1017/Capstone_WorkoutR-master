@@ -1,0 +1,74 @@
+﻿@model persentation_WorkoutR.Models.personModel
+@using persentation_WorkoutR.Models
+@{
+    ViewBag.Title = "View";
+}
+<html>
+<head>
+    <title>HTML Layout using Tables</title>
+</head>
+<body>
+    <table width="100%" border="0">
+
+        <tr>
+            <td colspan="4" bgcolor="#b5dcb3">
+                <h1>Welcome, @Html.DisplayFor(m => m.personFirstName)</h1>
+            </td>
+        </tr>
+        <tr valign="top">
+            <td bgcolor="#aaa" width="50">
+                <b>Profile</b><br />
+                @Html.DisplayFor(m => m.personFirstName)<br />
+                @Html.DisplayFor(m => m.personLastName)<br />
+                @Html.DisplayFor(m => m.personAddress)<br />
+                @Html.DisplayFor(m => m.personCity)<br />
+                @Html.DisplayFor(m => m.personState)<br />
+                @Html.DisplayFor(m => m.personPhone)<br />
+                @Html.DisplayFor(m => m.personZip)<br />
+            </td>
+<tr>
+            <td colspan="" bgcolor="#eee" width="100" height="200">
+                @if ((int)Session["FK_roleID"] == 1 || (int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+                {                   
+                    @Html.ActionLink("Profile", "updatePerson", "person", Model, null);
+                }
+            </td>
+
+            <td bgcolor="#eee" width="100" height="200">
+
+                @if ((int)Session["FK_roleID"] == 1 || (int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+                {
+                    <a href='@Url.Action("viewRoutine", "routine")'>
+                        <img src="~/images/1.jpg" width="400", height="250"/>
+                    </a>                    
+                }
+                    <center>Routines</center>
+            </td>
+            
+            <td bgcolor="#eee" width="100" height="200">
+                @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+                {
+                    <a href='@Url.Action("viewPerson", "person")'>
+                        <img src="~/images/multiple-users-silhouette_318-49546.jpg" width="400" , height="250" />
+                    </a>
+                }
+                <center>Members</center>
+            </td>
+        
+
+            <td bgcolor="#eee" width="100" height="200">
+
+                @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+                {
+                    <a href='@Url.Action("viewExercise", "exercise")'>
+                        <img src="~/images/WwMXoZ.jpg" width="400" , height="250" />
+                    </a>
+                }
+                <center>Exercises</center>
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>
+

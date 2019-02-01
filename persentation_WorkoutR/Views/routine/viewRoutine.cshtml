@@ -1,0 +1,62 @@
+﻿@model persentation_WorkoutR.Models.viewModel
+@using persentation_WorkoutR.Models
+@{
+
+    ViewBag.Title = "viewRoutine";
+}
+<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+<br>
+<i class="fa fa fa-arrow-circle-left" style="font-size:16px; padding:5px"></i>@Html.ActionLink("Back to Profile", "profile", "person")
+<h2>My Routines</h2>
+<br />
+@using (Html.BeginForm("viewRoutine", "routine", FormMethod.Post))
+{
+    <head>
+        <style>
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #ffffff;
+                text-align: left;
+                padding: 8px;
+                font-size: 15px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #ccc3c3;
+            }
+        </style>
+    </head>
+    <table>
+        <tr>
+            <th>Routine Name</th>
+            <th>Login Date</th>
+            <th>Exercises</th>
+            <th>Total Sets</th>
+            <th>Total Reps</th>
+        </tr>
+        @foreach (routineModel routine in Model.routineList)
+        {
+            string parameterValue = routine.login.ToShortDateString();
+            <tr>
+                <td>@Html.DisplayFor(m => routine.routineName)</td>
+                <td>@Html.DisplayFor(m => parameterValue)</td>
+                <td>@Html.DisplayFor(m => routine.totalExercise)</td>
+                <td>@Html.DisplayFor(m => routine.totalSets)</td>
+                <td>@Html.DisplayFor(m => routine.totalReps)</td>
+                <td>@Html.ActionLink("Exercises", "viewRoutineWorkout", "routineWorkout", routine, null) </td>
+                <td>@Html.ActionLink("delete", "deleteRoutine", routeValues: new { _deleteRoutine = routine.routineID })<i class="fa fa-trash" style="font-size:14px; color:red; padding:5px"></i> </td>
+                <td>@Html.ActionLink("update", "updateRoutine", routine)<i class="fa fa-edit" style="font-size:14px; color:red; padding:5px"></i></td>
+            </tr>
+        }
+    </table>
+
+}
+<br />
+<h3>Add Routine </h3>
+<i class="fa fa-plus" style="font-size:17px; color:red; padding:5px"></i>@Html.ActionLink("Add Routine", "addRoutine", "routine")

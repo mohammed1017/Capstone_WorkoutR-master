@@ -1,0 +1,49 @@
+﻿@model persentation_WorkoutR.Models.routineModel
+
+@{
+    ViewBag.Title = "addRoutine";
+}
+
+<br /><i class="fa fa fa-arrow-circle-left" style="font-size:16px; padding:5px"></i>@Html.ActionLink("Back to List ", "viewRoutine", "routine")
+<h2>ADD Routine</h2><br />
+
+<div class="w3ls-routine box box--big">
+
+    @using (Html.BeginForm("addRoutine", "routine", FormMethod.Post))
+    {
+        <div class="container">
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.routineName)
+                @Html.TextBoxFor(m => m.routineName, new { @class = "form-control", @placeholder = "Routine Name" })
+                @Html.ValidationMessageFor(m => m.routineName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(m => m.FK_personID)
+                @Html.TextBoxFor(m => m.FK_personID, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.login)
+                @Html.EditorFor(m => m.login, new { @class = "form-control datepicker", @id = "datepicker" })
+                @Html.ValidationMessageFor(m => m.login, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.HiddenFor(m => m.totalSets)
+                @Html.HiddenFor(m => m.totalSets, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.HiddenFor(m => m.totalReps)
+                @Html.HiddenFor(m => m.totalReps, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.HiddenFor(m => m.totalExercise)
+                @Html.HiddenFor(m => m.totalExercise, new { @class = "form-control" })
+            </div>
+        </div>
+        <input type="submit" class="btn-danger" value="Add Routine" />
+    }
+</div>
