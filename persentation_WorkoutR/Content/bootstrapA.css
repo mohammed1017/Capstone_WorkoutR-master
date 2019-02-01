@@ -637,9 +637,9 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.5rem;
 }
 
-p {
+/*p {
     margin-bottom: 2rem;
-}
+}*/
 
 abbr[title],
 abbr[data-original-title] {
@@ -10742,8 +10742,6 @@ a.text-dark:hover, a.text-dark:focus {
   content: 'Error';
 }
 .navbar {
-    border-width: 1px;
-    border-style: solid;
     background-color:navajowhite;
 
 }

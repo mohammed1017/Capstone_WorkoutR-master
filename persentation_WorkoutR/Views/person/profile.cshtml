@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "View";
 }
-
 <style>
+
     #header {
         background-color: black;
         color: white;
@@ -37,11 +37,11 @@
         width: 25%;
         float: left;
         padding: 5px;
+        min-width:250px;
     }
 
     #section {
         width: 350px;
-        float: left;
         width: 75%;
         padding-left: 120px;
         padding-top: 25px;
@@ -50,7 +50,6 @@
 <div id="header">
     <h1>Welcome, @Html.DisplayFor(m => m.personFirstName)</h1>
 </div>
-
 <div id="nav">
     <div class="left">First Name:</div> <div class="right">@Html.DisplayFor(m => m.personFirstName)</div><br />
     <hr />
@@ -66,7 +65,6 @@
     <hr />
     <div class="left">Zipcode:</div> <div class="right">@Html.DisplayFor(m => m.personZip)</div><br />
     <hr />
-
     @if ((int)Session["FK_roleID"] == 1 || (int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
     {
         @Html.ActionLink("Edit Profile", "updatePerson", "person", Model, null) <i style="padding:10px"></i>
@@ -76,7 +74,7 @@
     }
 </div>
 <div id="section">
-    <p>
+    <p class="text-right">
         @if ((int)Session["FK_roleID"] == 1 || (int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
         {
             <a href='@Url.Action("viewRoutine", "routine")'>
@@ -84,15 +82,15 @@
             </a>
         }
     </p><br />
-   <p>
-        @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
-        {
-            <a href='@Url.Action("viewPerson", "person")'>
-                <img src="~/images/Legend_Fitness_HappyMembers.jpg" width="600" , height="250" />
-            </a>
-        }
-    </p><br />
-    <p>
+        <p class="text-right">
+            @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+            {
+                <a href='@Url.Action("viewPerson", "person")'>
+                    <img src="~/images/Legend_Fitness_HappyMembers.jpg" width="600" , height="250"/>
+                </a>
+            }
+        </p><br />
+    <p class="text-right">
         @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
         {
             <a href='@Url.Action("viewExercise", "exercise")'>

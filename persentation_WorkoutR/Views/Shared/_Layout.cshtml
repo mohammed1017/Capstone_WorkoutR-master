@@ -7,7 +7,6 @@
     <title>@ViewBag.Title - 2018 Capstone Workout Routines</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="container">
@@ -38,16 +37,14 @@
             </ul>
         </div>
     </div>
-
-    <div class="container body-content">
+    <div class="container body-content position-relative" style="min-height:45vh">
         @RenderBody()
-        <hr /> 
-        
-        <footer>  
-            <p>&copy; @DateTime.Now.Year -Capstone - Workout Routines</p>                   
-        </footer>
     </div>
 
+    <footer style="bottom:0; display:block; margin-top:5em; width:100%; padding-left:25px">
+        <hr />
+        <p>&copy; @DateTime.Now.Year -Capstone - Workout Routines</p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
