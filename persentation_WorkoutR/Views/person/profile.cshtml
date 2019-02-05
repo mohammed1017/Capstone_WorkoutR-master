@@ -4,7 +4,11 @@
     ViewBag.Title = "View";
 }
 <style>
-
+    /*img {
+        max-width: 150%;
+        height: auto;
+        width: auto;
+    }*/
     #header {
         background-color: black;
         color: white;
@@ -37,17 +41,44 @@
         width: 25%;
         float: left;
         padding: 5px;
-        min-width:250px;
+        min-width: 250px;
     }
 
+
     #section {
-        width: 350px;
         width: 75%;
         padding-left: 120px;
         padding-top: 25px;
+        padding-left:37%;
+    }
+    @@media only screen and (max-width:992px) {
+        #section {
+            width: 95%;
+            height: auto;
+            padding-left: 120px;
+            padding-top: 25px;
+            padding-left: 45%;
+        }
+    }
+    @@media only screen and (max-width:767px)
+    {
+        #section {
+            padding-left: 55%;
+        }
+    }
+    @@media only screen and (max-width:500px) {
+        #section {
+            padding-left: 65%;
+        }
+    }
+
+    @@media only screen and (max-width:432px) {
+        #section {
+            padding-left: 75%;
+        }
     }
 </style>
-<div id="header">
+<div id="header" style="min-width:323px">
     <h1>Welcome, @Html.DisplayFor(m => m.personFirstName)</h1>
 </div>
 <div id="nav">
@@ -78,23 +109,23 @@
         @if ((int)Session["FK_roleID"] == 1 || (int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
         {
             <a href='@Url.Action("viewRoutine", "routine")'>
-                <img src="~/images/BeFunky-photo.jpg" width="600" , height="250" />
+                <img src="~/images/BeFunky-photo.jpg" style="width:600px; height:250px;"/>
             </a>
         }
     </p><br />
-        <p class="text-right">
-            @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
-            {
-                <a href='@Url.Action("viewPerson", "person")'>
-                    <img src="~/images/Legend_Fitness_HappyMembers.jpg" width="600" , height="250"/>
-                </a>
-            }
-        </p><br />
+    <p class="text-right">
+        @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
+        {
+            <a href='@Url.Action("viewPerson", "person")'>
+                <img src="~/images/Legend_Fitness_HappyMembers.jpg" style="width:600px; height:250px" />
+            </a>
+        }
+    </p><br />
     <p class="text-right">
         @if ((int)Session["FK_roleID"] == 2 || (int)Session["FK_roleID"] == 3)
         {
             <a href='@Url.Action("viewExercise", "exercise")'>
-                <img src="~/images/dumbbells_gym_weight_disks_118338_1920x1080.jpg" width="600" , height="250" />
+                <img src="~/images/dumbbells_gym_weight_disks_118338_1920x1080.jpg" style="width:600px; height:250px" />
             </a>
         }
     </p><br />
