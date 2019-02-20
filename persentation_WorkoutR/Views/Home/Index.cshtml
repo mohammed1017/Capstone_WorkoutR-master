@@ -3,6 +3,12 @@
     ViewBag.Title = "Home Page";
 }
 <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
     .navbar {
         border-width: 1px;
         border-style: solid;
@@ -30,6 +36,7 @@
         margin-right:400px;
     }
     footer {
+
         color: #ffffff;
         margin-top:5em;
         flex-shrink:0;
@@ -41,10 +48,10 @@
 <body>
 <br />
 <div class="jumbotron table-responsive-sm" style=" text-align: center; min-width:300px ; min-height: 350px; margin:auto; width:37%;" >
-    <h1 class="col-md-push-2">Workout Routines</h1>
+    <h1 class="col-md-push-2" style="margin-top:50px">Workout Routines</h1>
     <p class="lead col-md-push-9">Create and log your workouts </p>
 
-    <p class="col-md-push-2"><a href="/person/login" class="btn btn-primary btn-lg">Log in &raquo;</a>  <a href="/person/register" class="btn btn-primary btn-lg"> Sign Up </a></p>
+    <p class="col-md-push-2" ><a href="/person/login" class="btn btn-primary btn-lg">Log in &raquo;</a>  <a href="/person/register" class="btn btn-primary btn-lg"> Sign Up </a></p>
 </div>
 </body>
 

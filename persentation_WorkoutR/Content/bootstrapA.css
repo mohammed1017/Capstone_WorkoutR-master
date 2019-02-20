@@ -137,7 +137,7 @@ html {
 
 .w3ls-login form {
     max-width: 500px;
-    margin: 10vw;
+    margin: 5vh;
     border-radius: 8px;
     background: transparent;
     padding: 3.5vw;
@@ -611,6 +611,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 /* routine exercise--------ends here----------*/
 body {
+    padding: 0;
+    height: 100%;
     margin: 0;
     font-family: 'poppins', sans-serif;
     font-size: 0.8125rem;
