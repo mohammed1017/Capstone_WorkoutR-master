@@ -10,6 +10,7 @@ using utilityLogger;
 using businessLogicLayer;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web.Security;
 
 namespace persentation_WorkoutR.Controllers
 {
@@ -455,6 +456,15 @@ namespace persentation_WorkoutR.Controllers
             }
             // returning error
             return View("Error");
+        }
+
+        public ActionResult LogOff()
+        {
+            Session["personUserName"] = null; //it's my session variable
+            Session.Clear();
+            Session.Abandon();
+            FormsAuthentication.SignOut(); //you write this when you use FormsAuthentication
+            return RedirectToAction("login", "person");
         }
     }
 }

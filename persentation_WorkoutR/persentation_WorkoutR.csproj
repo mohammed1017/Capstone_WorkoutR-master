@@ -240,6 +240,7 @@
     <Content Include="Views\person\updatePassPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Action Attribute\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\bodyPart\" />
   </ItemGroup>
