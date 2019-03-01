@@ -9,38 +9,59 @@
 <i class="fa fa fa-arrow-circle-left" style="font-size:16px; padding:5px"></i> @Html.ActionLink("Back to Routine", "viewRoutine", "routine")
 <br /><br /><br />
 
-@using (Html.BeginForm("viewRoutineWorkout", "routineWorkout", FormMethod.Post))
-{
-    <table style="width:100%; font-size: 16px" class="tbl-accordion">
-        <colgroup span="2" align="left"></colgroup>
-        <colgroup align="right"></colgroup>
+<table style="width:100%; font-size: 16px" class="tbl-accordion">
+    @{int i = 0; }
+    <colgroup span="2" align="left"></colgroup>
+    <colgroup align="right"></colgroup>
 
-        <tr>
-            <th>Exercise</th>
-            <th>Sets</th>
-            <th>Reps</th>
-            <th>Rest</th>
+    <tr>
+
+        <th>Exercise</th>
+        <th>Sets</th>
+        <th>Reps</th>
+        <th>Rest</th>
+    </tr>
+
+    @foreach (routineWorkoutModel routineWorkout in Model.routineWorkoutList)
+
+    {
+        <tr class="clickable" data-toggle="collapse" id="row" data-target=".@i">
+
+            <td>@Html.DisplayFor(m => routineWorkout.exerciseName)</td>
+            <td>@Html.DisplayFor(m => routineWorkout.routineWSets)</td>
+            <td>@Html.DisplayFor(m => routineWorkout.routineWReps)</td>
+            <td>@Html.DisplayFor(m => routineWorkout.routineWRest)</td>
+            <td>@Html.ActionLink("Delete", "deleteRoutineWorkout", routeValues: new { _deleteRoutineWorkout = routineWorkout.routineWorkoutID })<i class="fa fa-trash" style="font-size:14px; padding:5px"></i></td>
+            <td>@Html.ActionLink("Update", "updateRoutineWorkout", routineWorkout)<i class="fa fa-edit" style="font-size:14px; padding:5px"></i></td>
         </tr>
-        @foreach (routineWorkoutModel routineWorkout in Model.routineWorkoutList)
 
-        {
-            <tr>
-                <td>@Html.DisplayFor(m => routineWorkout.exerciseName)</td>
-                <td> @Html.DisplayFor(m => routineWorkout.routineWSets)</td>
-                <td>@Html.DisplayFor(m => routineWorkout.routineWReps)</td>
-                <td>@Html.DisplayFor(m => routineWorkout.routineWRest)</td>
-                <td>@Html.ActionLink("Delete", "deleteRoutineWorkout", routeValues: new { _deleteRoutineWorkout = routineWorkout.routineWorkoutID })<i class="fa fa-trash" style="font-size:14px; padding:5px"></i></td>
-                <td>@Html.ActionLink("Update", "updateRoutineWorkout", routineWorkout)<i class="fa fa-edit" style="font-size:14px; padding:5px"></i></td>
-            </tr>
-        }
-    </table>
+        <tr class="collapse @i">
 
-    <br /><br />
-    <h3>Add Exercises </h3>
-    <i class="fa fa-plus" style="font-size:16px; padding:5px"></i> @Html.ActionLink("Add exercises", "addRoutineWorkout")
-}
+            @for (int b = 0; b < routineWorkout.routineWSets; b++)
+            {
+                <td width="10%">
+                <br />
+                <div> @Html.Partial("~/Views/weights/addWeights.cshtml", new weightsModel(routineWorkout)) </div>
+                <br />
+               </td>
+            }
+        </tr>
+
+        i++;
+    }
+</table>
+
+<br /><br />
+<h3>Add Exercises </h3>
+<i class="fa fa-plus" style="font-size:16px; padding:5px"></i> @Html.ActionLink("Add exercises", "addRoutineWorkout")
+
+
 <script>
 </script>
 
 <style>
+    table .collapse.in {
+        display: table-row;
+        width: 100%;
+    }
 </style>

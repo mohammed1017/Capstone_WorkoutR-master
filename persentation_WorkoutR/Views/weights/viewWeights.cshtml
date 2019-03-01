@@ -1,0 +1,17 @@
+﻿@model persentation_WorkoutR.Models.viewModel
+@using persentation_WorkoutR.Models
+@{
+    ViewBag.Title = "viewWeights";
+}
+
+
+
+@using (Html.BeginForm("viewWeights", "weights", FormMethod.Post))
+{
+
+
+    foreach (weightsModel weights in Model.weightsList)
+    {
+        Html.DisplayFor(m => weights.lbs);
+    }
+}

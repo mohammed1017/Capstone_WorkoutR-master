@@ -565,7 +565,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
         border-radius: 8px;
         background: transparent;
         padding: 3.5vw;
-        padding-left: 6.8vw;
+        /*adding-left: 6.8vw;*/
         border: solid #000000;
         border-width: 2px;
         box-sizing: border-box;

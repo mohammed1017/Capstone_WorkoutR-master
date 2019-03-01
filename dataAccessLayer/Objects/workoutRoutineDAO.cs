@@ -70,4 +70,11 @@ namespace dataAccessLayer.Objects
         public string exerciseName { get; set; }
         public string routineName { get; set; }
     }
+
+    public class weightsDAO
+    {
+        public int WeightsID { get; set; }
+        public int lbs { get; set; }
+        public int FK_routineWorkID { get; set; }
+    }
 }

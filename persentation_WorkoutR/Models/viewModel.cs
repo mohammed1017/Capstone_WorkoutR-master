@@ -26,6 +26,8 @@ namespace persentation_WorkoutR.Models
         public roleModel singleRole { get; set; }
         public List<roleModel> roleList { get; set; }
 
+        public weightsModel singleWeights { get; set; }
+        public List<weightsModel> weightsList { get; set; }
 
 
 
@@ -50,6 +52,9 @@ namespace persentation_WorkoutR.Models
 
             singleRole = new roleModel();
             roleList = new List<roleModel>();
+
+            singleWeights = new weightsModel();
+            weightsList = new List<weightsModel>();
 
         }
     }

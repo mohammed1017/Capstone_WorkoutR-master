@@ -163,5 +163,122 @@ namespace dataAccessLayer
                 _logger.logError(_error);
             }
         }
+
+
+        public void addWeights(weightsDAO addWeights)
+        {
+            try
+            {
+                //create a connection to a database using our connection string variable
+                using (SqlConnection _connection = new SqlConnection(connectionStrings))
+                {
+                    using (SqlCommand _command = new SqlCommand("sp_addingWeights", _connection))
+                    {
+                        // specify what type of command is to be used
+                        _command.CommandType = CommandType.StoredProcedure;
+
+                        //where the values are sent to the command
+                        _command.Parameters.AddWithValue("@lbs", addWeights.lbs);
+                        _command.Parameters.AddWithValue("@FK_routineWorkID", addWeights.FK_routineWorkID);
+                        // this is where the connection is open
+                        _connection.Open();
+
+                        // this is where we will execute the command
+                        _command.ExecuteNonQuery();
+
+                    }
+                }
+            }
+            catch (Exception _error)
+            {
+                // putting error into a file
+                _logger.logError(_error);
+            }
+        }
+        public List<weightsDAO> listAllWeights(int FK_routineWorkID)
+        {
+                        // making a new instance of the list 
+            List<weightsDAO> _weightsList = new List<weightsDAO>();
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionStrings))
+                {
+                    using (SqlCommand _command = new SqlCommand("sp_viewRoutineWorkout", _connection))
+                    {
+                        // specify whay type of command is to be used
+                        _command.CommandType = CommandType.StoredProcedure;
+
+                        _command.Parameters.AddWithValue("@FK_routineWorkID", FK_routineWorkID);
+
+
+                        _connection.Open();
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            // checking if the _reader has rows
+                            if (_reader.HasRows)
+                            {
+                                // loop to go through the columns
+                                while (_reader.Read())
+                                {
+                                    // new instance of to store all the values into persontolist.
+                                    weightsDAO weightsToList = new weightsDAO();
+                                    weightsToList.WeightsID = _reader.GetInt32(_reader.GetOrdinal("weightsID"));
+                                    weightsToList.lbs = _reader.GetInt32(_reader.GetOrdinal("lbs"));
+                                    weightsToList.FK_routineWorkID = _reader.GetInt32(_reader.GetOrdinal("FK_routineWorkID"));
+
+
+
+                                    // adding values to varibale _personList.add
+                                    _weightsList.Add(weightsToList);
+                                }
+                            }
+                            else
+                            {
+                                // showing error if no data found
+                                Console.WriteLine("No data found");
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception _error)
+            {
+                _logger.logError(_error);
+            }
+
+            // returning routine workou list
+            return _weightsList;
+        }
+        public void updateWeights(weightsDAO updateWeights)
+        {
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionStrings))
+                {
+                    using (SqlCommand _command = new SqlCommand("sp_updateWeights", _connection))
+                    {
+                        // specify whay type of command is to be used
+                        _command.CommandType = CommandType.StoredProcedure;
+
+                        //where the values are sen to the command
+                        _command.Parameters.AddWithValue("@weightsID", updateWeights.WeightsID);
+                        _command.Parameters.AddWithValue("@lbs", updateWeights.lbs);
+                        _command.Parameters.AddWithValue("@FK_routineWorkID", updateWeights.FK_routineWorkID);
+
+
+                        // this is where the connection is open
+                        _connection.Open();
+
+                        // this is where we will execute the command
+                        _command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception _error)
+            {
+                // putting error into a file
+                _logger.logError(_error);
+            }
+        }
     }
 }

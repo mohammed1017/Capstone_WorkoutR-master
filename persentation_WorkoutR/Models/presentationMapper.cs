@@ -140,6 +140,29 @@ namespace persentation_WorkoutR.Models
             return _routineWorkoutRetMod;
         }
 
+        public weightsModel map(weightsDAO _weightsMod)
+        {
+            weightsModel _weightsRetMod = new weightsModel();
+            _weightsRetMod.WeightsID = _weightsMod.WeightsID;
+            _weightsRetMod.lbs = _weightsMod.lbs;
+            _weightsRetMod.FK_routineWorkID = _weightsMod.FK_routineWorkID;
+
+            return _weightsRetMod;
+        }
+
+        public weightsDAO map(weightsModel _weightsMod)
+        {
+            weightsDAO _weightsRedMod = new weightsDAO();
+            _weightsRedMod.WeightsID = _weightsMod.WeightsID;
+            _weightsRedMod.lbs = _weightsMod.lbs;
+            _weightsRedMod.FK_routineWorkID = _weightsMod.FK_routineWorkID;
+
+            return _weightsRedMod;
+        }
+
+
+
+
         // making list of role model from rolesDAO
         public List<roleModel> map(List<rolesDAO> _dataRoles)
         {
@@ -261,6 +284,21 @@ namespace persentation_WorkoutR.Models
 
         }
 
+        public List<weightsModel> map(List<weightsDAO> _dataWeights)
+        {
+            List<weightsModel> _pressWeights = new List<weightsModel>();
+            foreach(weightsDAO _dWeights in _dataWeights)
+            {
+                weightsModel _pWeights = new weightsModel();
+                _pWeights.WeightsID = _dWeights.WeightsID;
+                _pWeights.lbs = _dWeights.lbs;
+                _pWeights.FK_routineWorkID = _pWeights.FK_routineWorkID;
+
+                _pressWeights.Add(_pWeights);
+            }
+
+            return _pressWeights;
+        }
 
 
     }
